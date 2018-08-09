@@ -52,7 +52,7 @@ $(function() {
          * the CSS to determine how we're performing the
          * hiding/showing of the menu element.
          */
-        it("menu-hidden", function() {
+        it("menu hidden", function() {
             expect(document.body.classList.contains("menu-hidden")).toBe(true);
         });
 
@@ -61,7 +61,7 @@ $(function() {
          * should have two expectations: does the menu display when
          * clicked and does it hide when clicked again.
          */
-        it("menu-toggle", function() {
+        it("menu toggles", function() {
             const menuIcon = $(".menu-icon-link");
 
             menuIcon.trigger("click");
@@ -80,6 +80,9 @@ $(function() {
          * Remember, loadFeed() is asynchronous so this test will require
          * the use of Jasmine's beforeEach and asynchronous done() function.
          */
+        it("entry element", function() {
+            expect(false).toBe(true);
+        });
     });
 
     /* a test suite named "New Feed Selection" */
@@ -88,5 +91,8 @@ $(function() {
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
          */
+        it("new feed", function() {
+            expect(false).toBe(true);
+        });
     });
 });
