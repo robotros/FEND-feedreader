@@ -102,9 +102,7 @@ $(function() {
         beforeEach(function(done) {
             // Load Feed 1 and store url
             loadFeed(1, function() {
-                entriesStart = $(".feed")
-                    .find(".entry-link")
-                    .attr("href");
+                entriesStart = $(".feed").html();
                 done();
             });
         });
@@ -112,9 +110,7 @@ $(function() {
         it("new feed", function(done) {
             // Load Feed 0 and store check url against feed 1
             loadFeed(0, function() {
-                entriesEnd = $(".feed")
-                    .find(".entry-link")
-                    .attr("href");
+                entriesEnd = $(".feed").html();
                 console.log(entriesEnd);
                 expect(entriesStart).not.toBe(entriesEnd);
                 done();
