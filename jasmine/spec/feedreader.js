@@ -94,32 +94,31 @@ $(function() {
 
     /* a test suite named "New Feed Selection" */
     describe("New Feed Selection", function() {
-
         /* a test that ensures when a new feed is loaded
          * by the loadFeed function that the content actually changes.
          */
-        let entriesStart, entriesEnd;
+        let entriesStart, entriesEnd; // declare check variables
 
         beforeEach(function(done) {
-            $(".feed").empty(function(done){
+            // Load Feed 1 and store url
+            loadFeed(1, function() {
+                entriesStart = $(".feed")
+                    .find(".entry-link")
+                    .attr("href");
                 done();
-            });
-
-            loadFeed(0, function(done) {
-                entriesStart = $(".feed").find(".entry");
-            });
-
-            loadFeed(0, function(done) {
-                entriesEnd = $(".feed").find(".entry");
             });
         });
 
-        it("new feed", function() {
-            console.log(entriesStart);
-            console.log(entriesEnd);
-            entriesStart.forEach(function(each,i){
-                expect(each==entriesEnd[i]).not.toBe(true);
-            })
+        it("new feed", function(done) {
+            // Load Feed 0 and store check url against feed 1
+            loadFeed(0, function() {
+                entriesEnd = $(".feed")
+                    .find(".entry-link")
+                    .attr("href");
+                console.log(entriesEnd);
+                expect(entriesStart).not.toBe(entriesEnd);
+                done();
+            });
         });
     });
 });
