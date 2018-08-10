@@ -1,3 +1,4 @@
+"use strict";
 /* feedreader.js
  *
  * This is the spec file that Jasmine will read and contains
@@ -78,13 +79,12 @@ $(function() {
          * function is called and completes its work, there is at least
          * a single .entry element within the .feed container.
          */
-        beforeEach(function(done){
+        beforeEach(function(done) {
             //let feed = $(".feed");
             loadFeed(0, function() {
                 done();
             });
         });
-
 
         it("entry element", function(done) {
             expect($(".feed").find(".entry").length > 0).toBe(true);
@@ -94,12 +94,26 @@ $(function() {
 
     /* a test suite named "New Feed Selection" */
     describe("New Feed Selection", function() {
-        /* TODO: Write a test that ensures when a new feed is loaded
+
+        /* a test that ensures when a new feed is loaded
          * by the loadFeed function that the content actually changes.
-         * Remember, loadFeed() is asynchronous.
          */
+        let entriesStart, entriesEnd;
+
+        beforeEach(function(done) {
+            $(".feed").empty();
+            loadFeed(2, function() {
+                entriesStart = $(".feed").find(allFeeds.url);
+                done();
+            });
+            loadFeed(0, function() {
+                entriesEnd = $(".feed").find(allFeeds.url);
+                done();
+            });
+        });
+
         it("new feed", function() {
-            expect(false).toBe(true);
+            expect(entriesStart).not.toBe(entriesEnd);
         });
     });
 });
