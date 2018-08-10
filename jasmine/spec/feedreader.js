@@ -101,19 +101,25 @@ $(function() {
         let entriesStart, entriesEnd;
 
         beforeEach(function(done) {
-            $(".feed").empty();
-            loadFeed(2, function() {
-                entriesStart = $(".feed").find(allFeeds.url);
+            $(".feed").empty(function(done){
                 done();
             });
-            loadFeed(0, function() {
-                entriesEnd = $(".feed").find(allFeeds.url);
-                done();
+
+            loadFeed(0, function(done) {
+                entriesStart = $(".feed").find(".entry");
+            });
+
+            loadFeed(0, function(done) {
+                entriesEnd = $(".feed").find(".entry");
             });
         });
 
         it("new feed", function() {
-            expect(entriesStart).not.toBe(entriesEnd);
+            console.log(entriesStart);
+            console.log(entriesEnd);
+            entriesStart.forEach(function(each,i){
+                expect(each==entriesEnd[i]).not.toBe(true);
+            })
         });
     });
 });
